@@ -4,28 +4,30 @@ services:
  #Services
   node:
     container_name: docker-mongodb
-    image: docker-mongo
-    restart: unless-stopped
+    image: docker-mongodb
+    #restart: always
     build: .
-    command: npm start
     depends_on:
-      - mongo_db
+      - mongo
     ports:
-      - '3000:3000'
-    networks:
-      - nodeapp-network
-    volumes:
-      - ./data:/data/db
+      - '80:3000'
+    environment:
+      - DATABASE_URL="mongodb"://mongo:27017"
     links:
-      - mongodb   
-      
-  #mongo
+      - mongo  
+
+  #mongodb
   mongo:
     container_name: mongo
     image: mongo
-    mongo_url: mongodb://momgo:27017
     ports:
-      - '27017:27017'
-networks:
-  nodeapp-network:
-    driver: bridge
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:
+
+  
+     
+    

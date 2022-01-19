@@ -5,7 +5,7 @@ services:
   node:
     container_name: docker-mongodb
     image: docker-mongodb
-    #restart: always
+    restart: always
     build: .
     depends_on:
       - mongo

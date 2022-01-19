@@ -11,6 +11,8 @@ services:
       - mongo
     ports:
       - '3000:3000'
+    volumes:
+      - .:/nodeapp
     environment:
       - DATABASE_URL="mongodb"://mongo:27017"
     links:

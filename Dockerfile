@@ -12,8 +12,9 @@ RUN npm install
 #Copy app source code
 COPY . .
 
+ENV PORT 4000
 #Expose port and start application
-EXPOSE 3000
+EXPOSE $PORT
 CMD [ "npm", "run","dev"]
 
 
